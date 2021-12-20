@@ -23,11 +23,11 @@
     <Panel label="Armed">
         <Button
             label="Decrease"
-            number={$mapping.combat.missile.type.decrease}
+            number={$mapping.combat.missile.armed.decrease}
         />
         <Button
             label="Increase"
-            number={$mapping.combat.missile.type.increase}
+            number={$mapping.combat.missile.armed.increase}
         />
     </Panel>
 </Panel>

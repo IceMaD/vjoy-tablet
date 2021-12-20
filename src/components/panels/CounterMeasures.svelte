@@ -19,12 +19,12 @@
         </Spreaded>
         <Button
             label="Launch"
-            number={$mapping.combat.countermeasures.decoy.launche}
+            number={$mapping.combat.countermeasures.decoy.launch}
         />
     </Panel>
 
     <Button
         label="Noise"
-        number={$mapping.combat.countermeasures.noise.launche}
+        number={$mapping.combat.countermeasures.noise.launch}
     />
 </Panel>
