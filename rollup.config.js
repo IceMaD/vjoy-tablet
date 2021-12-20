@@ -25,7 +25,7 @@ export default {
 		plugins: [
 			replace({
 				preventAssignment: true,
-				values:{
+				values: {
 					'process.browser': true,
 					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
@@ -37,7 +37,7 @@ export default {
 				}
 			}),
 			url({
-				sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
+				sourceDir: path.resolve(path.resolve(__dirname), 'src/node_modules/images'),
 				publicPath: '/client/'
 			}),
 			resolve({
@@ -65,7 +65,7 @@ export default {
 
 			!dev && terser({
 				module: true
-			})
+			}),
 		],
 
 		preserveEntrySignatures: false,
@@ -78,7 +78,7 @@ export default {
 		plugins: [
 			replace({
 				preventAssignment: true,
-				values:{
+				values: {
 					'process.browser': false,
 					'process.env.NODE_ENV': JSON.stringify(mode)
 				},
@@ -113,7 +113,7 @@ export default {
 			resolve(),
 			replace({
 				preventAssignment: true,
-				values:{
+				values: {
 					'process.browser': true,
 					'process.env.NODE_ENV': JSON.stringify(mode)
 				},

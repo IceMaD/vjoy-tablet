@@ -1,6 +1,7 @@
 <script>
     import { theme } from "../stores";
-    import Spreaded from "./spreaded.svelte";
+    import Spreaded from "./Spreaded.svelte";
+    import Icon from "./Icon.svelte";
 
     export let label = "";
     $: upperLabel = label.toUpperCase();
@@ -12,9 +13,7 @@
 <div class="panel" style="--color: {color}">
     <div class="label">
         {#if icon}
-            <span class="icon">
-                <svelte:component this={icon}/>
-            </span>
+            <Icon icon={icon}/>
         {/if}
         {upperLabel}
     </div>
@@ -43,14 +42,5 @@
         padding: 0;
         margin: -1.5rem 0 -0.25rem -0.25rem;
         padding: 0 0.25em;
-    }
-
-    .icon {
-        display: inline-flex;
-        vertical-align: middle;
-        color: inherit;
-        width: 1rem;
-        height: 1rem;
-        margin-top: -0.25rem;
     }
 </style>
