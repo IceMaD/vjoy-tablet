@@ -1,17 +1,21 @@
 <script>
+    import {
+        faPlus,
+        faMinus,
+    } from "@fortawesome/free-solid-svg-icons";
     import { mapping } from "../../stores";
     import { Button, Panel, Spreaded } from "../../components";
 </script>
 
 <Panel label="Countermeasures" direction="vertical">
     <Panel label="Decoy" direction="vertical">
-        <Spreaded>
+        <Spreaded alignment="space-evenly">
             <Button
-                label="Less"
+                icon={faMinus}
                 number={$mapping.combat.countermeasures.decoy.decrease}
             />
             <Button
-                label="More"
+                icon={faPlus}
                 number={$mapping.combat.countermeasures.decoy.increase}
             />
         </Spreaded>

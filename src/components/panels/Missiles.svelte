@@ -1,6 +1,12 @@
 <script>
+    import {
+        faPlus,
+        faMinus,
+        faChevronLeft,
+        faChevronRight,
+    } from "@fortawesome/free-solid-svg-icons";
     import { mapping, theme } from "../../stores";
-    import { Button, Panel } from "../../components";
+    import { Button, Panel, Spreaded } from "../../components";
 </script>
 
 <Panel label="Missiles" direction="vertical">
@@ -11,22 +17,22 @@
         color={$theme.red}
     />
 
-    <Panel label="Type">
+    <Panel label="Type" alignment="space-evenly">
         <Button
-            label="Previous"
+            icon={faChevronLeft}
             number={$mapping.combat.missile.type.previous}
         />
-        <Button label="Next" number={$mapping.combat.missile.type.next} />
+        <Button
+            icon={faChevronRight}
+            number={$mapping.combat.missile.type.next}
+        />
     </Panel>
 
-    <Panel label="Armed">
+    <Panel label="Armed" alignment="space-evenly">
         <Button
-            label="Decrease"
+            icon={faMinus}
             number={$mapping.combat.missile.armed.decrease}
         />
-        <Button
-            label="Increase"
-            number={$mapping.combat.missile.armed.increase}
-        />
+        <Button icon={faPlus} number={$mapping.combat.missile.armed.increase} />
     </Panel>
 </Panel>

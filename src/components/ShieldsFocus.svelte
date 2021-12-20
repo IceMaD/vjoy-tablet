@@ -1,7 +1,7 @@
 <script>
     import { mapping, theme, debug } from "../stores";
 
-    export let color = $theme.lightgrey;
+    export let color = $theme.blue;
     $: fillColor = `${color}22`;
     $: activeFillColor = `${color}66`;
 

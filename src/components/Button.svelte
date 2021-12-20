@@ -1,8 +1,10 @@
 <script>
+    import Fa from "svelte-fa";
     import Client from "../utils/Client";
     import { debug, theme } from "../stores";
 
     export let label = '';
+    export let icon = null;
     $: upperLabel = label.toUpperCase();
     export let color = $theme.lightgrey;
     $: bgColor = `${color}22`;
@@ -19,6 +21,9 @@
     on:mouseup={callback(number, 0)}
     on:touchend={callback(number, 0)}
 >
+    {#if icon}
+        <Fa icon={icon}/>
+    {/if}
     {upperLabel}
     {#if $debug}
         ({number})

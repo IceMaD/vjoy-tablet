@@ -21,5 +21,6 @@
         flex-direction: var(--flex-direction);
         gap: var(--gap);
         align-items: var(--alignItems);
+        justify-content: var(--alignItems);
     }
 </style>

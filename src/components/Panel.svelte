@@ -6,13 +6,14 @@
     $: upperLabel = label.toUpperCase();
     export let color = $theme.lightgrey;
     export let direction = "horizontal";
+    export let alignment = null;
 </script>
 
 <div class="panel" style="--color: {color}">
     <div class="label">
         {upperLabel}
     </div>
-    <Spreaded {direction}>
+    <Spreaded {direction} {alignment}>
         <slot />
     </Spreaded>
 </div>

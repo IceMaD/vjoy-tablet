@@ -1,6 +1,8 @@
 <script>
-    import { CommsPanel, NotificationsPanel } from "../components";
+    import { CommsPanel, NotificationsPanel, Spreaded } from "../components";
 </script>
 
-<CommsPanel />
-<NotificationsPanel />
+<Spreaded alignment="stretch">
+    <CommsPanel />
+    <NotificationsPanel />
+</Spreaded>
