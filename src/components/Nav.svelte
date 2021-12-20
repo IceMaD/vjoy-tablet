@@ -46,6 +46,11 @@
 				COMBAT
 			</a>
 		</li>
+		<li>
+			<a aria-current="{segment === 'comms' ? 'page' : undefined}" href="comms">
+				COMMS
+			</a>
+		</li>
 		<!-- {#if $debug} -->
 		<li>
 			<a aria-current="{segment === 'mapping' ? 'page' : undefined}" href="mapping">

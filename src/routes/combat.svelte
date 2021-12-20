@@ -17,7 +17,6 @@
     export let mapping;
 </script>
 
-<!-- <Panel label="Targetting" color={$theme.lightgrey}> -->
 <Panel label="PIP" color={$theme.lightgrey} direction="vertical">
     <Button label="Lag" number={mapping.combat.pip.lag} />
     <Button label="Lead" number={mapping.combat.pip.lead} />
@@ -38,7 +37,6 @@
         </Panel>
     {/each}
 </Panel>
-<!-- </Panel> -->
 
 <Panel label="Missile" color={$theme.lightgrey} direction="vertical">
     <Button label="Engage mode" number={mapping.combat.missile.mode} />

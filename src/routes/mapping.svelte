@@ -9,14 +9,40 @@
 </script>
 
 <script>
+    import Spreaded from "../components/Spreaded.svelte";
+
     export let mapping;
-    export let activeKey = 'combat';
-    
+    export let activeKey = "combat";
+
     $: keys = Object.keys(mapping);
 
-    let open = key => () => activeKey = key
-    let close = () => activeKey = null
+    let open = (key) => () => (activeKey = key);
+    let close = () => (activeKey = null);
 </script>
+
+<Spreaded direction="vertical">
+    <div>
+        {#each keys as key}
+            {#if activeKey === key}
+                <button disabled class="active">
+                    {key}
+                    <!-- ⮝ -->
+                </button>
+            {:else}
+                <button on:click={open(key)}>
+                    {key}
+                    <!-- ⮟ -->
+                </button>
+            {/if}
+        {/each}
+    </div>
+
+    {#if activeKey}
+        <pre>
+            {JSON.stringify(mapping[activeKey], null, 2)}
+        </pre>
+    {/if}
+</Spreaded>
 
 <style>
     pre {
@@ -34,29 +60,6 @@
 
     button.active {
         cursor: default;
-        background-color: rgba(255,255,255, .1);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 </style>
-
-{#each keys as key}
-    {#if activeKey === key}
-        <button disabled class="active">
-            {key}
-            <!-- ⮝ -->
-        </button>
-    {:else}
-        <button on:click={open(key)}>
-            {key}
-            <!-- ⮟ -->
-        </button>
-    {/if}
-{/each}
-
-{#each keys as key}
-    {#if activeKey === key}
-        <pre>
-            {JSON.stringify(mapping[key], null, 2)}
-        </pre>
-    {/if}
-{/each}
-
