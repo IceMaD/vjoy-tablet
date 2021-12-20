@@ -10,10 +10,11 @@
 
 <script>
     import { theme } from "../stores";
-
+    import MdWifi from "svelte-icons/md/MdWifi.svelte";
     import Panel from "../components/Panel.svelte";
     import Button from "../components/Button.svelte";
     import Spreaded from "../components/Spreaded.svelte";
+    import ShieldsPriority from "../components/ShieldsFocus.svelte";
 
     export let mapping;
 </script>
@@ -87,13 +88,8 @@
     />
 </Panel>
 
-<Panel label="Shields" direction="vertical">
-    <Button label="Left" number={mapping.combat.shieldFocus.left} />
-    <Button label="Right" number={mapping.combat.shieldFocus.right} />
-    <Button label="Up" number={mapping.combat.shieldFocus.up} />
-    <Button label="Down" number={mapping.combat.shieldFocus.down} />
-    <Button label="Front" number={mapping.combat.shieldFocus.front} />
-    <Button label="Back" number={mapping.combat.shieldFocus.back} />
+<Panel label="Shields" direction="vertical" icon={MdWifi}>
+    <ShieldsPriority />
     <Button label="Reset" number={mapping.combat.shieldFocus.reset} />
 </Panel>
 

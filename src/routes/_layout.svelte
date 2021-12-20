@@ -1,9 +1,21 @@
+<script context="module">
+    export async function preload() {
+        const mapping = await this.fetch(`mapping.json`);
+
+        return {
+            mapping: await mapping.json(),
+        };
+    }
+</script>
 
 <script>
 	import Nav from '../components/Nav.svelte';
+	import { mapping as mappingStore } from '../stores';
 
 	export let segment;
 	export let mapping;
+
+	mappingStore.set(mapping)
 </script>
 
 <style>

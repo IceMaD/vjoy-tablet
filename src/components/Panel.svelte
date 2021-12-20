@@ -6,10 +6,16 @@
     $: upperLabel = label.toUpperCase();
     export let color = $theme.lightgrey;
     export let direction = 'horizontal';
+    export let icon = null;
 </script>
 
 <div class="panel" style="--color: {color}">
     <div class="label">
+        {#if icon}
+            <span class="icon">
+                <svelte:component this={icon}/>
+            </span>
+        {/if}
         {upperLabel}
     </div>
     <Spreaded direction={direction}>
@@ -37,5 +43,14 @@
         padding: 0;
         margin: -1.5rem 0 -0.25rem -0.25rem;
         padding: 0 0.25em;
+    }
+
+    .icon {
+        display: inline-flex;
+        vertical-align: middle;
+        color: inherit;
+        width: 1rem;
+        height: 1rem;
+        margin-top: -0.25rem;
     }
 </style>
