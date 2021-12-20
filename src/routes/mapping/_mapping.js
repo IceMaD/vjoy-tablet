@@ -24,6 +24,11 @@ export const mapping = {
 			off: automaticButton.next().value,
 			toggle: automaticButton.next().value,
 		},
+		coupled: {
+			on: automaticButton.next().value,
+			off: automaticButton.next().value,
+			toggle: automaticButton.next().value,
+		},
 		landingGears: {
 			on: automaticButton.next().value,
 			off: automaticButton.next().value,

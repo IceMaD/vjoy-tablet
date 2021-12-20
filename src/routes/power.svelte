@@ -1,6 +1,6 @@
 <script>
-    import { Alimentation, PowerTriangle } from "../components/panels";
+    import { AlimentationPanel, PowerTrianglePanel } from "../components";
 </script>
 
-<Alimentation />
-<PowerTriangle />
+<AlimentationPanel />
+<PowerTrianglePanel />

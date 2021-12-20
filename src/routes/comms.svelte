@@ -1,6 +1,6 @@
 <script>
-    import { Comms, Notifications } from "../components/panels";
+    import { CommsPanel, NotificationsPanel } from "../components";
 </script>
 
-<Comms />
-<Notifications />
+<CommsPanel />
+<NotificationsPanel />

@@ -1,17 +1,17 @@
 <script>
     import {
-        PIP,
-        Pins,
-        Missiles,
-        CounterMeasures,
-        Shields,
-        Turret,
-    } from "../components/panels";
+        PipPanel,
+        PinsPanel,
+        MissilesPanel,
+        CounterMeasuresPanel,
+        ShieldsPanel,
+        TurretPanel,
+    } from "../components";
 </script>
 
-<PIP />
-<Pins />
-<Missiles />
-<CounterMeasures />
-<Shields />
-<Turret />
+<PipPanel />
+<PinsPanel />
+<MissilesPanel />
+<CounterMeasuresPanel />
+<ShieldsPanel />
+<TurretPanel />

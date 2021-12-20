@@ -1,56 +1,31 @@
 <script>
-	import GiMissileSwarm from "svelte-icons/gi/GiMissileSwarm.svelte";
-	import Icon from "./Icon.svelte";
-	import { debug } from "../stores";
+    import Fa from "svelte-fa";
+	import { faCogs, faBolt, faRocket, faUserFriends, faQuestion } from '@fortawesome/free-solid-svg-icons'
 
 	export let segment;
+
+	let links = [
+		{route: 'power', label: 'Power', icon: faBolt},
+		{route: 'system', label: 'System', icon: faCogs},
+		{route: 'combat', label: 'Combat', icon: faRocket},
+		{route: 'comms', label: 'Comms', icon: faUserFriends},
+		{route: 'mapping', label: 'Mapping', icon: faQuestion},
+	] 
 </script>
 
 <nav>
 	<ul>
-		<li>
-			<a
-				aria-current={segment === "power" ? "page" : undefined}
-				href="power"
-			>
-				POWER
-			</a>
-		</li>
-		<li>
-			<a
-				aria-current={segment === "system" ? "page" : undefined}
-				href="system"
-			>
-				SYSTEM
-			</a>
-		</li>
-		<li>
-			<a
-				aria-current={segment === "combat" ? "page" : undefined}
-				href="combat"
-			>
-				<Icon icon={GiMissileSwarm}/>
-				COMBAT
-			</a>
-		</li>
-		<li>
-			<a
-				aria-current={segment === "comms" ? "page" : undefined}
-				href="comms"
-			>
-				COMMS
-			</a>
-		</li>
-		<!-- {#if $debug} -->
-		<li>
-			<a
-				aria-current={segment === "mapping" ? "page" : undefined}
-				href="mapping"
-			>
-				MAPPING
-			</a>
-		</li>
-		<!-- {/if} -->
+		{#each links as link}
+			<li>
+				<a
+					aria-current={segment === link.route ? "page" : undefined}
+					href={link.route}
+				>
+					<Fa icon={link.icon}/>
+					{link.label}
+				</a>
+			</li>
+		{/each}
 	</ul>
 </nav>
 

@@ -1,7 +1,6 @@
 <script>
     import { mapping } from "../../stores";
-    import Panel from "../Panel.svelte";
-    import Button from "../Button.svelte";
+    import { Button, Panel } from "../../components";
 </script>
 
 <Panel label="Pins">

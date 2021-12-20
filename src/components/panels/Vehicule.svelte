@@ -1,8 +1,6 @@
 <script>
     import { mapping } from "../../stores";
-    import Panel from "../Panel.svelte";
-    import Button from "../Button.svelte";
-    import Spreaded from "../Spreaded.svelte";
+    import { Button, Panel, Spreaded } from "../../components";
 </script>
 
 <Panel label="Vehicule" direction="vertical">

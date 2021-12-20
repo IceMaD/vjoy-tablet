@@ -1,19 +1,31 @@
 <script>
     import { mapping } from "../../stores";
-    import Panel from "../Panel.svelte";
-    import Button from "../Button.svelte";
+    import { Button, Panel } from "../../components";
 </script>
 
-<Panel label="Flight systems" direction="vertical">
-    <Button label="VTOL" number={$mapping.system.vtol.toggle} />
-    <Button label="G-safe" number={$mapping.system.gsafe.toggle} />
-    <Button label="ESP" number={$mapping.system.esp.toggle} />
-    <Button
-        label="Poximity assist"
-        number={$mapping.system.proximityAssist.toggle}
-    />
-    <Button
-        label="Cruise control"
-        number={$mapping.system.cruiseControl.toggle}
-    />
+<Panel label="Flight systems">
+    <Panel label="VTOL" direction="vertical">
+        <Button label="On" number={$mapping.system.vtol.on} />
+        <Button label="Off" number={$mapping.system.vtol.off} />
+    </Panel>
+    <Panel label="G-safe" direction="vertical">
+        <Button label="On" number={$mapping.system.gsafe.on} />
+        <Button label="Off" number={$mapping.system.gsafe.off} />
+    </Panel>
+    <Panel label="ESP" direction="vertical">
+        <Button label="On" number={$mapping.system.esp.on} />
+        <Button label="Off" number={$mapping.system.esp.off} />
+    </Panel>
+    <Panel label="Coupled" direction="vertical">
+        <Button label="On" number={$mapping.system.coupled.on} />
+        <Button label="Off" number={$mapping.system.coupled.off} />
+    </Panel>
+    <Panel label="Poximity assist" direction="vertical">
+        <Button label="On" number={$mapping.system.proximityAssist.on} />
+        <Button label="Off" number={$mapping.system.proximityAssist.off} />
+    </Panel>
+    <Panel label="Cruise control" direction="vertical">
+        <Button label="On" number={$mapping.system.cruiseControl.on} />
+        <Button label="Off" number={$mapping.system.cruiseControl.off} />
+    </Panel>
 </Panel>

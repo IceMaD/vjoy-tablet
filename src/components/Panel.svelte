@@ -1,23 +1,18 @@
 <script>
-    import { theme } from "../stores";
     import Spreaded from "./Spreaded.svelte";
-    import Icon from "./Icon.svelte";
+    import { theme } from "../stores";
 
     export let label = "";
     $: upperLabel = label.toUpperCase();
     export let color = $theme.lightgrey;
-    export let direction = 'horizontal';
-    export let icon = null;
+    export let direction = "horizontal";
 </script>
 
 <div class="panel" style="--color: {color}">
     <div class="label">
-        {#if icon}
-            <Icon icon={icon}/>
-        {/if}
         {upperLabel}
     </div>
-    <Spreaded direction={direction}>
+    <Spreaded {direction}>
         <slot />
     </Spreaded>
 </div>
