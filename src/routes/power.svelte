@@ -1,6 +1,12 @@
 <script>
-    import { AlimentationPanel, PowerTrianglePanel } from "../components";
+    import {
+        AlimentationPanel,
+        FlightSystemsPanel,
+        Spreaded,
+    } from "../components";
 </script>
 
-<AlimentationPanel />
-<PowerTrianglePanel />
+<Spreaded direction="vertical">
+    <AlimentationPanel />
+    <FlightSystemsPanel />
+</Spreaded>

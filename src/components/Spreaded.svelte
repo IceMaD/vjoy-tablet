@@ -1,12 +1,17 @@
 <script>
+    export let alignment = null;
     export let direction = 'horizontal';
     $: flexDirection = 'vertical' === direction ? 'column' : 'row';
     export let spacing = 1;
     $: gap = `${spacing}rem`;
-    $: alignement = 'vertical' === direction ? 'stretch' : 'center';
+    $: alignItems = alignment 
+        ? alignment 
+        : 'vertical' === direction
+            ? 'stretch'
+            : 'center';
 </script>
 
-<div style="--flex-direction: {flexDirection}; --gap: {gap}; --alignement: {alignement}">
+<div style="--flex-direction: {flexDirection}; --gap: {gap}; --alignItems: {alignItems}">
     <slot />
 </div>
 
@@ -15,6 +20,6 @@
         display: flex;
         flex-direction: var(--flex-direction);
         gap: var(--gap);
-        align-items: var(--alignement);
+        align-items: var(--alignItems);
     }
 </style>

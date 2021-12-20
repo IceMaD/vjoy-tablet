@@ -3,7 +3,7 @@
     import { Button, Panel } from "../../components";
 </script>
 
-<Panel label="Danger zone" color={$theme.red} direction="vertical">
+<Panel label="Danger zone" color={$theme.red}>
     <Button
         label="Self-destruct"
         number={$mapping.system.selfDestruct}

@@ -18,6 +18,7 @@ import {
 } from './panels'
 
 import Button from './Button.svelte'
+import Filler from './Filler.svelte'
 import Nav from './Nav.svelte'
 import Panel from './Panel.svelte'
 import ShieldsFocus from './ShieldsFocus.svelte'
@@ -30,6 +31,7 @@ export {
     CounterMeasuresPanel,
     DangerZonePanel,
     DockingPanel,
+    Filler,
     FlightSystemsPanel,
     MissilesPanel,
     Nav,

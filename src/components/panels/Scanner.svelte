@@ -1,13 +1,15 @@
 <script>
     import { mapping } from "../../stores";
-    import { Button, Panel } from "../../components";
+    import { Button, Panel, Spreaded } from "../../components";
 </script>
 
-<Panel label="Scanner" direction="vertical">
-    <Button label="Activate" number={$mapping.scanner.mode} />
-    <Button label="Ping" number={$mapping.scanner.ping} />
-    <Panel label="Angle" direction="vertical">
+<Panel label="Scanner">
+    <Panel label="Angle">
         <Button label="Increase" number={$mapping.scanner.angle.increase} />
         <Button label="Decrease" number={$mapping.scanner.angle.decrease} />
     </Panel>
+    <Spreaded>
+        <Button label="Activate" number={$mapping.scanner.mode} />
+        <Button label="Ping" number={$mapping.scanner.ping} />
+    </Spreaded>
 </Panel>

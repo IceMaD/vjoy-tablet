@@ -5,17 +5,22 @@
         QuantumPanel,
         ScannerPanel,
         DockingPanel,
-        DangerZonePanel,
+        AlimentationPanel,
+        Spreaded,
     } from "../components";
 </script>
 
-<VehiculePanel />
-<FlightSystemsPanel />
-<QuantumPanel />
-<ScannerPanel />
-<DockingPanel />
-<DangerZonePanel />
-
-<style>
-    /* your styles go here */
-</style>
+<Spreaded direction="vertical">
+    <Spreaded alignment="stretch">
+        <VehiculePanel />
+        <Spreaded direction="vertical">
+            <AlimentationPanel />
+            <FlightSystemsPanel />
+        </Spreaded>
+    </Spreaded>
+    <Spreaded alignment="stretch">
+        <ScannerPanel />
+        <QuantumPanel />
+        <DockingPanel />
+    </Spreaded>
+</Spreaded>
