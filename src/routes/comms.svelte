@@ -17,11 +17,11 @@
     export let mapping;
 </script>
 
-<Panel label="Comms" color={$theme.lightgrey} direction="vertical">
+<Panel label="Comms" direction="vertical">
     <Button label="Hail" number={mapping.communications.hail} />
 </Panel>
 
-<Panel label="Notification" color={$theme.lightgrey} direction="vertical">
+<Panel label="Notification" direction="vertical">
     <Button label="Accept" number={mapping.communications.notification.accept} />
     <Button label="Decline" number={mapping.communications.notification.decline} />
     <Button label="Dismiss" number={mapping.communications.notification.dismiss} />

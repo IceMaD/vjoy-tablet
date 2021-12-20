@@ -16,7 +16,7 @@
     export let mapping;
 </script>
 
-<Panel label="Ignition" color={$theme.lightgrey}>
+<Panel label="Ignition">
     <Panel label="Shields" direction="vertical">
         <Button label="On" number={mapping.power.switch.shields.on} />
         <Button label="Off" number={mapping.power.switch.shields.off} />
@@ -37,7 +37,7 @@
         <Button label="Toggle" number={mapping.power.flightReady} />
     </Panel>
 </Panel>
-<Panel label="Power Triangle" color={$theme.lightgrey}>
+<Panel label="Power Triangle">
     <Panel label="Shields" direction="vertical">
         <Button label="Max" number={mapping.power.triangle.shields.max} />
         <Button

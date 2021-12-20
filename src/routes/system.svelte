@@ -18,7 +18,7 @@
     export let mapping;
 </script>
 
-<Panel label="Flight systems" color={$theme.lightgrey} direction="vertical">
+<Panel label="Flight systems" direction="vertical">
     <Button label="VTOL" number={mapping.system.vtol.toggle} />
     <Button label="G-safe" number={mapping.system.gsafe.toggle} />
     <Button label="ESP" number={mapping.system.esp.toggle} />
@@ -31,7 +31,7 @@
         number={mapping.system.cruiseControl.toggle}
     />
 </Panel>
-<Panel label="Vehicule" color={$theme.lightgrey} direction="vertical">
+<Panel label="Vehicule" direction="vertical">
     <Button label="Landing gears" number={mapping.system.landingGears.toggle} />
     <Button label="Lights" number={mapping.power.lights} />
 

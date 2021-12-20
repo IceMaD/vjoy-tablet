@@ -18,6 +18,7 @@
 		padding: 2rem;
 		display: flex;
 		align-items: flex-start;
+		flex-wrap: wrap;
 	}
 </style>
 

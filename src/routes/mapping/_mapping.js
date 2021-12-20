@@ -64,6 +64,25 @@ export const mapping = {
 		},
 	},
 	combat: {
+		shieldFocus: {
+			left: automaticButton.next().value,
+			right: automaticButton.next().value,
+			up: automaticButton.next().value,
+			down: automaticButton.next().value,
+			front: automaticButton.next().value,
+			back: automaticButton.next().value,
+			reset: automaticButton.next().value,
+		},
+		countermeasures : {
+			decoy: {
+				increase: automaticButton.next().value,
+				decrease: automaticButton.next().value,
+				launch: automaticButton.next().value,
+			},
+			noise: {
+				launch: automaticButton.next().value,
+			}
+		},
 		pip: {
 			rotate: automaticButton.next().value,
 			lead: automaticButton.next().value,
