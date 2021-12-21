@@ -1,182 +1,171 @@
-function* indexer() {
-    let index = 1;
-
-    while (true) {
-        yield index++;
-    }
-}
-
-// @TODO max this static
-let automaticButton = indexer();
-
 export const mapping = {
 	system: {
-		selfDestruct: automaticButton.next().value,
-		eject: automaticButton.next().value,
+		selfDestruct: 1,
+		eject: 2,
 		doors: {
-			open: automaticButton.next().value,
-			close: automaticButton.next().value,
-			lock: automaticButton.next().value,
-			unlock: automaticButton.next().value,
+			open: 3,
+			close: 4,
+			lock: 5,
+			unlock: 6
 		},
 		vtol: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 7,
+			off: 8,
+			toggle: 9
 		},
 		coupled: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 10,
+			off: 11,
+			toggle: 12
 		},
 		landingGears: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 13,
+			off: 14,
+			toggle: 15
 		},
 		gsafe: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 16,
+			off: 17,
+			toggle: 18
 		},
 		esp: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 19,
+			off: 20,
+			toggle: 21
 		},
 		proximityAssist: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
+			on: 22,
+			off: 23,
+			toggle: 24
 		},
 		cruiseControl: {
-			on: automaticButton.next().value,
-			off: automaticButton.next().value,
-			toggle: automaticButton.next().value,
-		},
+			on: 25,
+			off: 26,
+			toggle: 27
+		}
 	},
 	docking: {
-		mode: automaticButton.next().value,
-		camera: automaticButton.next().value,
-		request: automaticButton.next().value,
+		mode: 28,
+		camera: 29,
+		request: 30
 	},
 	scanner: {
-		mode: automaticButton.next().value,
-		ping: automaticButton.next().value,
+		mode: 31,
+		ping: 32,
 		angle: {
-			increase: automaticButton.next().value,
-			decrease: automaticButton.next().value,
-		},
+			increase: 33,
+			decrease: 34
+		}
 	},
 	combat: {
 		shieldFocus: {
-			left: automaticButton.next().value,
-			right: automaticButton.next().value,
-			up: automaticButton.next().value,
-			down: automaticButton.next().value,
-			front: automaticButton.next().value,
-			back: automaticButton.next().value,
-			reset: automaticButton.next().value,
+			left: 35,
+			right: 36,
+			up: 37,
+			down: 38,
+			front: 39,
+			back: 40,
+			reset: 41
 		},
-		countermeasures : {
+		countermeasures: {
 			decoy: {
-				increase: automaticButton.next().value,
-				decrease: automaticButton.next().value,
-				launch: automaticButton.next().value,
+				increase: 42,
+				decrease: 43,
+				launch: 44
 			},
 			noise: {
-				launch: automaticButton.next().value,
+				launch: 45
 			}
 		},
 		pip: {
-			rotate: automaticButton.next().value,
-			lead: automaticButton.next().value,
-			lag: automaticButton.next().value,
+			rotate: 46,
+			lead: 47,
+			lag: 48
 		},
 		pin: [
 			{
-				pin: automaticButton.next().value,
-				lock: automaticButton.next().value,
-				release: automaticButton.next().value,
+				pin: 49,
+				lock: 50,
+				release: 51
 			},
 			{
-				pin: automaticButton.next().value,
-				lock: automaticButton.next().value,
-				release: automaticButton.next().value,
+				pin: 52,
+				lock: 53,
+				release: 54
 			},
 			{
-				pin: automaticButton.next().value,
-				lock: automaticButton.next().value,
-				release: automaticButton.next().value,
-			},
+				pin: 55,
+				lock: 56,
+				release: 57
+			}
 		],
 		missile: {
-			mode: automaticButton.next().value,
-			fire: automaticButton.next().value,
+			mode: 58,
+			fire: 59,
 			type: {
-				previous: automaticButton.next().value,
-				next: automaticButton.next().value,
+				previous: 60,
+				next: 61
 			},
 			armed: {
-				increase: automaticButton.next().value,
-				decrease: automaticButton.next().value,
+				increase: 62,
+				decrease: 63
 			}
 		},
 		turret: {
-			staggering: automaticButton.next().value,
-			gyro: automaticButton.next().value,
+			staggering: 64,
+			gyro: 65
 		}
 	},
 	quantum: {
-		mode: automaticButton.next().value,
-		travel: automaticButton.next().value,
+		mode: 66,
+		travel: 67
 	},
 	communications: {
-		hail: automaticButton.next().value,
+		hail: 68,
 		notification: {
-			accept: automaticButton.next().value,
-			decline: automaticButton.next().value,
-			dismiss: automaticButton.next().value,
+			accept: 69,
+			decline: 70,
+			dismiss: 71
 		}
 	},
 	power: {
-		flightReady: automaticButton.next().value,
-		lights: automaticButton.next().value,
+		flightReady: 72,
+		lights: 73,
 		switch: {
 			all: {
-				on: automaticButton.next().value,
-				off: automaticButton.next().value,
+				on: 74,
+				off: 75
 			},
 			shields: {
-				on: automaticButton.next().value,
-				off: automaticButton.next().value,
+				on: 76,
+				off: 77
 			},
 			thrusters: {
-				on: automaticButton.next().value,
-				off: automaticButton.next().value,
+				on: 78,
+				off: 79
 			},
 			weapons: {
-				on: automaticButton.next().value,
-				off: automaticButton.next().value,
-			},
+				on: 80,
+				off: 81
+			}
 		},
 		triangle: {
-			reset: automaticButton.next().value,
+			reset: 82,
 			shields: {
-				increase: automaticButton.next().value,
-				decrease: automaticButton.next().value,
-				max: automaticButton.next().value,
+				increase: 83,
+				decrease: 84,
+				max: 85
 			},
 			thrusters: {
-				increase: automaticButton.next().value,
-				decrease: automaticButton.next().value,
-				max: automaticButton.next().value,
+				increase: 86,
+				decrease: 87,
+				max: 88
 			},
 			weapons: {
-				increase: automaticButton.next().value,
-				decrease: automaticButton.next().value,
-				max: automaticButton.next().value,
-			},
+				increase: 89,
+				decrease: 90,
+				max: 91
+			}
 		}
 	}
-} 
+}

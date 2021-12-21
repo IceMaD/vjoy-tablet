@@ -17,6 +17,10 @@ html, body {
 	font-size: 1.4vw;
 }
 
+* {
+	user-select: none !important;
+}
+
 #sapper {
 	height: inherit;
 	width: inherit;

@@ -9,5 +9,5 @@ export function post(req, res) {
 		'Content-Type': 'application/json'
 	});
 
-	res.end('');
+	res.end('null');
 }

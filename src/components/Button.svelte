@@ -1,6 +1,7 @@
 <script>
     import Icon from "svelte-fa";
-    import Client from "../utils/Client";
+	import { tap } from '@sveltejs/gestures';
+    import VjoyClient from "../utils/VjoyClient";
     import { debug, theme } from "../stores";
 
     export let label = '';
@@ -11,16 +12,14 @@
     $: activeBgColor = `${color}66`;
     export let number;
 
-    const callback = (number, state) => () => Client.post("vjoy", { number, state })
+    const callback = number => () => VjoyClient.press(number)
 </script>
 
 <button 
     style="--color: {color}; --bgColor: {bgColor}; --activeBgColor: {activeBgColor}"
-    on:mousedown={callback(number, 1)}
-    on:touchstart={callback(number, 1)}
-    on:mouseup={callback(number, 0)}
-    on:touchend={callback(number, 0)}
->
+    use:tap 
+    on:mousedown={callback(number)}
+    on:touchstart={callback(number)}>
     {#if icon}
         <Icon icon={icon}/>
     {/if}

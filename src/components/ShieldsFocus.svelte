@@ -1,5 +1,6 @@
 <script>
     import { mapping, theme, debug } from "../stores";
+    import VjoyClient from "../utils/VjoyClient";
 
     export let color = $theme.blue;
     $: fillColor = `${color}22`;
@@ -20,9 +21,7 @@
         };
     };
 
-    const bind = (number, state) => () => {
-        console.log(number, state);
-    };
+    const callback = number => () => VjoyClient.press(number)
 
     let parts = [
         { size: 1 },
@@ -76,10 +75,8 @@
                         class="action"
                         d={part.d}
                         transform={part.transform}
-                        on:mousedown={bind(part.button, 1)}
-                        on:mouseup={bind(part.button, 0)}
-                        on:touchstart={bind(part.button, 1)}
-                        on:touchend={bind(part.button, 0)}
+                        on:mousedown={callback(part.button)}
+                        on:touchstart={callback(part.button)}
                     />
                 {:else}
                     <path
@@ -111,10 +108,8 @@
             height="25"
             mask="url(#remove-center-square)"
             class="action"
-            on:mousedown={bind($mapping.combat.shieldFocus.up, 1)}
-            on:mouseup={bind($mapping.combat.shieldFocus.up, 0)}
-            on:touchstart={bind($mapping.combat.shieldFocus.up, 1)}
-            on:touchend={bind($mapping.combat.shieldFocus.up, 0)}
+            on:mousedown={callback($mapping.combat.shieldFocus.up)}
+            on:touchstart={callback($mapping.combat.shieldFocus.up)}
         />
 
         <rect
@@ -124,10 +119,8 @@
             height="25"
             mask="url(#remove-center-square)"
             class="action"
-            on:mousedown={bind($mapping.combat.shieldFocus.down, 1)}
-            on:mouseup={bind($mapping.combat.shieldFocus.down, 0)}
-            on:touchstart={bind($mapping.combat.shieldFocus.down, 1)}
-            on:touchend={bind($mapping.combat.shieldFocus.down, 0)}
+            on:mousedown={callback($mapping.combat.shieldFocus.down)}
+            on:touchstart={callback($mapping.combat.shieldFocus.down)}
         />
 
         <rect x="40" y="40" width="20" height="20" fill="transparent" />
@@ -165,7 +158,6 @@
     svg {
         width: 10rem;
         height: 10rem;
-        user-select: none;
     }
 
     .graph {
