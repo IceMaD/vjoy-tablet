@@ -1,9 +1,11 @@
 <script>
     import { mapping, theme } from "../../stores";
     import { Button, Panel } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Alimentation">
+<Panel label="Alimentation" {grow}>
     <Panel label="Shields" direction="vertical">
         <Button
             label="On"

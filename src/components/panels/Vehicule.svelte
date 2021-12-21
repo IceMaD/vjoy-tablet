@@ -1,9 +1,11 @@
 <script>
     import { mapping, theme } from "../../stores";
     import { Button, Panel, Spreaded } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Vehicule" direction="vertical">
+<Panel label="Vehicule" direction="vertical" {grow}>
     <Button
         label="Landing gears"
         number={$mapping.system.landingGears.toggle}

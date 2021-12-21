@@ -5,9 +5,11 @@
     } from "@fortawesome/free-solid-svg-icons";
     import { mapping } from "../../stores";
     import { Button, Panel, Spreaded } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Countermeasures" direction="vertical">
+<Panel label="Countermeasures" direction="vertical" {grow}>
     <Panel label="Decoy" direction="vertical">
         <Spreaded alignment="space-evenly">
             <Button

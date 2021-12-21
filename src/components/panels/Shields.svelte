@@ -1,9 +1,11 @@
 <script>
     import { mapping, theme } from "../../stores";
     import { Button, Panel, ShieldsFocus } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Shields" direction="vertical">
+<Panel label="Shields" direction="vertical" {grow}>
     <ShieldsFocus />
     <Button
         label="Reset"

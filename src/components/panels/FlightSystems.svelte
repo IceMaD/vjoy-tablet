@@ -1,9 +1,11 @@
 <script>
     import { mapping, theme } from "../../stores";
     import { Button, Panel } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Flight systems">
+<Panel label="Flight systems" {grow}>
     <Panel label="VTOL" direction="vertical">
         <Button label="On" color={$theme.cyan} number={$mapping.system.vtol.on} />
         <Button label="Off" color={$theme.orange} number={$mapping.system.vtol.off} />

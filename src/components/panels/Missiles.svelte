@@ -6,10 +6,12 @@
         faChevronRight,
     } from "@fortawesome/free-solid-svg-icons";
     import { mapping, theme } from "../../stores";
-    import { Button, Panel, Spreaded } from "../../components";
+    import { Button, Panel } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Missiles" direction="vertical">
+<Panel label="Missiles" direction="vertical" {grow}>
     <Button label="Engage mode" number={$mapping.combat.missile.mode} />
     <Button
         label="Fire"

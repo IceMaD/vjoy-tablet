@@ -1,8 +1,10 @@
 <script>
-    import { mapping } from "../../stores";
+    import { mapping, theme } from "../../stores";
     import { Button, Panel } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Comms" direction="vertical">
-    <Button label="Hail" number={$mapping.communications.hail} />
+<Panel label="Comms" direction="vertical" {grow}>
+    <Button label="Hail" color={$theme.blue} number={$mapping.communications.hail} />
 </Panel>

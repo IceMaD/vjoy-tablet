@@ -6,8 +6,7 @@ import Docking from "./Docking.svelte"
 import FlightSystems from "./FlightSystems.svelte"
 import Missiles from "./Missiles.svelte"
 import Notifications from "./Notifications.svelte"
-import Pins from "./Pins.svelte"
-import Pip from "./Pip.svelte"
+import Targetting from "./Targetting.svelte"
 import PowerTriangle from "./PowerTriangle.svelte"
 import Quantum from "./Quantum.svelte"
 import Scanner from "./Scanner.svelte"
@@ -24,12 +23,11 @@ export {
     FlightSystems,
     Missiles,
     Notifications,
-    Pins,
- Pip,
     PowerTriangle,
     Quantum,
     Scanner,
     Shields,
+    Targetting,
     Turret,
     Vehicule,
 }

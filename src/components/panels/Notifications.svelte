@@ -1,9 +1,11 @@
 <script>
     import { mapping, theme } from "../../stores";
     import { Button, Panel } from "../../components";
+
+    export let grow = false;
 </script>
 
-<Panel label="Notifications" direction="horizontal">
+<Panel label="Notifications" direction="horizontal" {grow}>
     <Button
         label="Accept"
         color={$theme.green}

@@ -1,38 +1,28 @@
 <script>
     import {
-        PipPanel,
-        PinsPanel,
         MissilesPanel,
         CounterMeasuresPanel,
         ShieldsPanel,
         TurretPanel,
-        DangerZonePanel,
+        TargettingPanel,
         PowerTrianglePanel,
         Spreaded,
-        Filler,
     } from "../components";
 </script>
 
-<Spreaded direction="vertical">
-    <Spreaded alignment="start">
-        <Spreaded direction="vertical">
-            <Spreaded alignment="stretch">
-                <PowerTrianglePanel />
-                <ShieldsPanel />
-            </Spreaded>
-            <Spreaded alignment="stretch">
-                <PinsPanel />
-                <Spreaded direction="vertical">
-                    <PipPanel />
-                    <TurretPanel />
-                </Spreaded>
-            </Spreaded>
-        </Spreaded>
-
-        <Spreaded direction="vertical">
-            <MissilesPanel />
-            <CounterMeasuresPanel />
-        </Spreaded>
+<Spreaded alignment="stretch">
+    <Spreaded direction="vertical">
+        <PowerTrianglePanel />
+        <TargettingPanel grow />
     </Spreaded>
-    <DangerZonePanel />
+
+    <Spreaded direction="vertical">
+        <MissilesPanel />
+        <TurretPanel grow />
+    </Spreaded>
+
+    <Spreaded direction="vertical">
+        <ShieldsPanel />
+        <CounterMeasuresPanel />
+    </Spreaded>
 </Spreaded>

@@ -1,5 +1,5 @@
 <script>
-    import Fa from "svelte-fa";
+    import Icon from "svelte-fa";
     import Client from "../utils/Client";
     import { debug, theme } from "../stores";
 
@@ -22,7 +22,7 @@
     on:touchend={callback(number, 0)}
 >
     {#if icon}
-        <Fa icon={icon}/>
+        <Icon icon={icon}/>
     {/if}
     {upperLabel}
     {#if $debug}

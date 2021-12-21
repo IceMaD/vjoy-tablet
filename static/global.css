@@ -13,6 +13,10 @@ body {
 	color: #fff;
 }
 
+html, body {
+	font-size: 1.4vw;
+}
+
 #sapper {
 	height: inherit;
 	width: inherit;

@@ -1,22 +1,31 @@
 <script context="module">
-    export async function preload() {
-        const mapping = await this.fetch(`mapping.json`);
+	export async function preload() {
+		const mapping = await this.fetch(`mapping.json`);
 
-        return {
-            mapping: await mapping.json(),
-        };
-    }
+		return {
+			mapping: await mapping.json(),
+		};
+	}
 </script>
 
 <script>
-	import Nav from '../components/Nav.svelte';
-	import { mapping as mappingStore } from '../stores';
+	import Nav from "../components/Nav.svelte";
+	import { mapping as mappingStore } from "../stores";
 
 	export let segment;
 	export let mapping;
 
-	mappingStore.set(mapping)
+	mappingStore.set(mapping);
 </script>
+
+<main>
+	<div class="nav">
+		<Nav {segment} />
+	</div>
+	<div class="container">
+		<slot {mapping} />
+	</div>
+</main>
 
 <style>
 	main {
@@ -29,16 +38,10 @@
 	.container {
 		padding: 2rem;
 		display: flex;
-		align-items: flex-start;
 		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		flex-grow: 1;
+		flex-grow: 1;
 	}
 </style>
-
-<main>
-	<div class="nav">
-		<Nav {segment}/>
-	</div>
-	<div class="container">
-		<slot mapping={mapping}></slot>
-	</div>
-</main>

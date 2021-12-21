@@ -1,20 +1,26 @@
 <script>
-	import Fa from "svelte-fa";
+	import Icon from "svelte-fa";
 	import {
 		faCogs,
 		faRocket,
 		faUserFriends,
 		faQuestion,
+		faSkull,
 	} from "@fortawesome/free-solid-svg-icons";
-	import { debug } from "../stores";
+	import { theme, debug } from "../stores";
 
 	export let segment;
 
 	let links = [
-		// {route: 'power', label: 'Power', icon: faBolt},
 		{ route: "system", label: "System", icon: faCogs },
 		{ route: "combat", label: "Combat", icon: faRocket },
 		{ route: "comms", label: "Comms", icon: faUserFriends },
+		{
+			route: "dangerZone",
+			label: "Danger zone",
+			icon: faSkull,
+			color: $theme.red,
+		},
 		{ route: "mapping", label: "Mapping", icon: faQuestion, debug: true },
 	];
 </script>
@@ -23,14 +29,20 @@
 	<ul>
 		{#each links as link}
 			{#if !link.debug || $debug}
-				<li>
+				<li
+					style="
+							--bgColor: {link.color ? `${link.color}33` : 'transparent'};
+							--activeBgColor: {link.color ? `${link.color}66` : `${$theme.white}22`};
+							--activeBarColor: {link.color ?? $theme.cyan};
+						"
+				>
 					<a
 						aria-current={segment === link.route
 							? "page"
 							: undefined}
 						href={link.route}
 					>
-						<Fa icon={link.icon} />
+						<Icon class="icon" icon={link.icon} />
 						{link.label}
 					</a>
 				</li>
@@ -60,12 +72,11 @@
 		text-decoration: none;
 		padding: 0.5em 1em;
 		display: block;
-		background-color: rgba(255, 255, 255, 0);
-		box-shadow: inset 0px 0 0px 0px cyan;
+		background-color: var(--bgColor);
 	}
 
 	[aria-current="page"] {
-		background-color: rgba(255, 255, 255, 0.2);
-		box-shadow: inset 0px -2px 0px 0px cyan;
+		background-color: var(--activeBgColor);
+		box-shadow: inset 0px -3px 0px 0px var(--activeBarColor);
 	}
 </style>

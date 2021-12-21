@@ -21,6 +21,6 @@
     <Spreaded alignment="stretch">
         <ScannerPanel />
         <QuantumPanel />
-        <DockingPanel />
+        <DockingPanel grow />
     </Spreaded>
 </Spreaded>

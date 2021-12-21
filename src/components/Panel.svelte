@@ -7,13 +7,15 @@
     export let color = $theme.lightgrey;
     export let direction = "horizontal";
     export let alignment = null;
+    export let grow = false;
+    $: panelGrow = grow ? 1 : 0;
 </script>
 
-<div class="panel" style="--color: {color}">
+<div class="panel" style="--color: {color}; --panelGrow: {panelGrow}">
     <div class="label">
         {upperLabel}
     </div>
-    <Spreaded {direction} {alignment}>
+    <Spreaded {direction} {alignment} {grow}>
         <slot />
     </Spreaded>
 </div>
@@ -26,6 +28,7 @@
         gap: 1rem;
         display: inline-flex;
         flex-direction: column;
+        flex-grow: var(--panelGrow);
     }
 
     .label {
