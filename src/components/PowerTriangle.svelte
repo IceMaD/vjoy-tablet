@@ -1,4 +1,7 @@
 <script>
+    import { tweened, spring } from "svelte/motion";
+	import { quadOut as easing } from 'svelte/easing';
+
     import { Canvas } from "svelte-canvas";
     import Grid from "./PowerTriangle/Grid.svelte";
     import State from "./PowerTriangle/State.svelte";
@@ -12,9 +15,17 @@
 
     const width = 300;
     const height = widthToHeight(width);
-    let repartition = [60, 20, 20];
-    let preview = null;
+    let repartition = tweened([60, 20, 20], {
+		duration: 200,
+		easing
+	});
+    let preview = spring(null, {
+		stiffness: 0.1,
+		damping: 0.4
+	});
     let cursor = "default";
+
+    console.log(preview);
 
     const onMouseMove = ({ clientX, clientY, target: canvas }) => {
         let { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
@@ -27,12 +38,12 @@
             )
         ) {
             cursor = "pointer";
-            preview = coordinatesToRepartition(
+            preview.set(coordinatesToRepartition(
                 { width, height },
                 stateCoordinates
-            );
+            ));
         } else {
-            preview = null;
+            preview.set(null, {hard: true});
             cursor = "default";
         }
     };
@@ -47,10 +58,10 @@
                 triangleCoordinates({ width, height }, 110)
             )
         ) {
-            repartition = coordinatesToRepartition(
+            repartition.set(coordinatesToRepartition(
                 { width, height },
                 stateCoordinates
-            );
+            ));
         }
     };
 </script>
@@ -67,8 +78,8 @@
         style="cursor: {cursor}"
     >
         <Grid />
-        <Preview repartition={preview} />
-        <State {repartition} />
+        <Preview repartition={$preview} />
+        <State repartition={$repartition} />
     </Canvas>
     <div class="label engine">
         {preview ? JSON.stringify(preview) : "Engine"}
