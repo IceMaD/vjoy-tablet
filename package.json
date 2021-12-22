@@ -33,6 +33,8 @@
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
     "svelte": "^3.17.3",
-    "svelte-fa": "^2.4.0"
+    "svelte-canvas": "^0.7.1",
+    "svelte-fa": "^2.4.0",
+    "svelte-fullscreen": "^2.0.0"
   }
 }

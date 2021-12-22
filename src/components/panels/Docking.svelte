@@ -1,6 +1,6 @@
 <script>
     import { mapping } from "../../stores";
-    import { Button, Panel, Spreaded } from "../../components";
+    import { Button, Panel } from "../../components";
 
     export let grow = false;
 </script>

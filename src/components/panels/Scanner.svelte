@@ -10,7 +10,7 @@
         <Button label="Increase" number={$mapping.scanner.angle.increase} />
         <Button label="Decrease" number={$mapping.scanner.angle.decrease} />
     </Panel>
-    <Spreaded>
+    <Spreaded direction="vertical">
         <Button label="Activate" number={$mapping.scanner.mode} />
         <Button label="Ping" number={$mapping.scanner.ping} />
     </Spreaded>

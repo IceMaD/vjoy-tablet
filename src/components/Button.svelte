@@ -1,6 +1,6 @@
 <script>
     import Icon from "svelte-fa";
-    import VjoyClient from "../utils/VjoyClient";
+    import { vjoyPress } from "../actions";
     import { debug, theme } from "../stores";
 
     export let label = "";
@@ -10,8 +10,6 @@
     $: bgColor = `${color}22`;
     $: activeBgColor = `${color}66`;
     export let number;
-
-    const callback = (number) => () => VjoyClient.press(number);
 
     export let x = .5;
     export let y = .3;
@@ -29,8 +27,7 @@
         --y: {y}rem;
         --rotate: -{deg}deg;
     "
-    on:mousedown={callback(number)}
-    on:touchstart={callback(number)}
+    use:vjoyPress={{ number }}
 >
     {#if icon}
         <Icon {icon} />

@@ -9,6 +9,7 @@
 </script>
 
 <script>
+	import Fullscreen from "svelte-fullscreen";
 	import Nav from "../components/Nav.svelte";
 	import { mapping as mappingStore } from "../stores";
 
@@ -18,14 +19,16 @@
 	mappingStore.set(mapping);
 </script>
 
-<main>
-	<div class="nav">
-		<Nav {segment} />
-	</div>
-	<div class="container">
-		<slot {mapping} />
-	</div>
-</main>
+<Fullscreen let:onToggle>
+	<main>
+		<div class="nav">
+			<Nav {segment} toggleFullScreen={onToggle} />
+		</div>
+		<div class="container">
+			<slot {mapping} />
+		</div>
+	</main>
+</Fullscreen>
 
 <style>
 	main {
@@ -33,15 +36,30 @@
 		width: inherit;
 		display: flex;
 		flex-direction: column;
+		background: #1e1e1e
+			url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAG0lEQVQYV2P8//+/FCMj4zMGJMCIzIGxKRQEAJgPBAbJqUVTAAAAAElFTkSuQmCC)
+			repeat;
+		font-family: "Oxanium", sans-serif;
+		line-height: 1.5;
+		display: flex;
+		height: 100vh;
+		width: 100vw;
+		overflow-x: hidden;
+		overflow-y: auto;
+		font-weight: 500;
+		color: #fff;
+	}
+
+	.container,
+	.nav {
+		display: flex;
 	}
 
 	.container {
 		padding: 2rem;
-		display: flex;
 		flex-wrap: wrap;
+		flex-grow: 1;
 		align-items: center;
 		justify-content: center;
-		flex-grow: 1;
-		flex-grow: 1;
 	}
 </style>

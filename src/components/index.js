@@ -16,15 +16,18 @@ import {
     Vehicule as VehiculePanel,
 } from './panels'
 
+import BigButton from './BigButton.svelte'
 import Button from './Button.svelte'
 import Filler from './Filler.svelte'
 import Nav from './Nav.svelte'
+import PowerTriangle from './PowerTriangle.svelte'
 import Panel from './Panel.svelte'
 import ShieldsFocus from './ShieldsFocus.svelte'
 import Spreaded from './Spreaded.svelte'
 
 export {
     AlimentationPanel,
+    BigButton,
     Button,
     CommsPanel,
     CounterMeasuresPanel,
@@ -36,6 +39,7 @@ export {
     Nav,
     NotificationsPanel,
     Panel,
+    PowerTriangle,
     PowerTrianglePanel,
     QuantumPanel,
     ScannerPanel,

@@ -10,17 +10,17 @@
     } from "../components";
 </script>
 
-<Spreaded direction="vertical">
-    <Spreaded alignment="stretch">
-        <VehiculePanel />
-        <Spreaded direction="vertical">
-            <AlimentationPanel />
-            <FlightSystemsPanel />
+<Spreaded alignment="stretch">
+    <Spreaded direction="vertical">
+        <AlimentationPanel />
+        <FlightSystemsPanel />
+        <Spreaded alignment="stretch">
+            <ScannerPanel />
+            <DockingPanel grow />
         </Spreaded>
     </Spreaded>
-    <Spreaded alignment="stretch">
-        <ScannerPanel />
+    <Spreaded direction="vertical" alignment="stretch">
+        <VehiculePanel grow />
         <QuantumPanel />
-        <DockingPanel grow />
     </Spreaded>
 </Spreaded>

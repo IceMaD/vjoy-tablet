@@ -1,11 +1,17 @@
 <script>
-    import { mapping } from "../../stores";
-    import { Button, Panel } from "../../components";
+    import { mapping, theme } from "../../stores";
+    import { Button, BigButton, Panel } from "../../components";
 
     export let grow = false;
 </script>
 
 <Panel label="Quantum" direction="vertical" {grow}>
     <Button label="Spool" number={$mapping.quantum.mode} />
-    <Button label="Engage" number={$mapping.quantum.travel} />
+    <BigButton
+        label="Engage
+        Quantum"
+        number={$mapping.quantum.travel}
+        color={$theme.blue}
+        duration={2}
+    />
 </Panel>

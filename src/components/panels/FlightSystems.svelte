@@ -22,11 +22,11 @@
         <Button label="On" color={$theme.cyan} number={$mapping.system.coupled.on} />
         <Button label="Off" color={$theme.orange} number={$mapping.system.coupled.off} />
     </Panel>
-    <Panel label="Poximity assist" direction="vertical">
+    <Panel label="Prox. assist" direction="vertical">
         <Button label="On" color={$theme.cyan} number={$mapping.system.proximityAssist.on} />
         <Button label="Off" color={$theme.orange} number={$mapping.system.proximityAssist.off} />
     </Panel>
-    <Panel label="Cruise control" direction="vertical">
+    <Panel label="Cr. ctrl" direction="vertical">
         <Button label="On" color={$theme.cyan} number={$mapping.system.cruiseControl.on} />
         <Button label="Off" color={$theme.orange} number={$mapping.system.cruiseControl.off} />
     </Panel>

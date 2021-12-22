@@ -1,13 +1,14 @@
 <script>
     import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
     import { mapping, theme } from "../../stores";
-    import { Button, Panel } from "../../components";
+    import { Button, Panel, PowerTriangle } from "../../components";
 
     export let grow = false;
 </script>
 
 <Panel label="Power Triangle" {grow}>
-    {#each ["shields", "thrusters", "weapons"] as system}
+    <PowerTriangle/>
+    <!-- {#each ["shields", "thrusters", "weapons"] as system}
         <Panel label={system} direction="vertical">
             <Button
                 label="Max"
@@ -30,5 +31,5 @@
         label="Reset"
         color={$theme.lightgrey}
         number={$mapping.power.triangle.reset}
-    />
+    /> -->
 </Panel>
