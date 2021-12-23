@@ -7,6 +7,8 @@
     export let repartition;
 
     $: render = ({ context, width, height }) => {
+        const lineWidth = (width * 0.5) / 100;
+
         if (repartition) {
             drawTrangleAxis(
                 context,
@@ -17,7 +19,7 @@
                         repartition
                     ),
                 },
-                { color: $theme.lightgrey, lineWidth: 1 }
+                { color: $theme.lightgrey, lineWidth }
             );
         }
     };

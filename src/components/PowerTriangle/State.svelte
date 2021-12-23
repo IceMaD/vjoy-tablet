@@ -9,6 +9,8 @@
     $: render = ({ context, width, height }) => {
         const center = repartitionToCoordinates({ width, height }, repartition);
         const frameWoordinates = triangleCoordinates({ width, height }, 100);
+        const lineWidth = (width * 1) / 100;
+        const radius = lineWidth;
 
         drawTrangleAxis(
             context,
@@ -16,13 +18,13 @@
                 ...frameWoordinates,
                 center,
             },
-            { color: $theme.blue, lineWidth: 3 }
+            { color: $theme.blue, lineWidth }
         );
 
-        drawDot(context, center, { color: $theme.blue, radius: 5 });
-        drawDot(context, frameWoordinates.a, { color: $theme.blue, radius: 3 });
-        drawDot(context, frameWoordinates.b, { color: $theme.blue, radius: 3 });
-        drawDot(context, frameWoordinates.c, { color: $theme.blue, radius: 3 });
+        drawDot(context, center, { color: $theme.blue, radius: radius * 2 });
+        drawDot(context, frameWoordinates.a, { color: $theme.blue, radius });
+        drawDot(context, frameWoordinates.b, { color: $theme.blue, radius });
+        drawDot(context, frameWoordinates.c, { color: $theme.blue, radius });
     };
 </script>
 

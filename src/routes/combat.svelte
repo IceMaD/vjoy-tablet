@@ -13,16 +13,14 @@
 <Spreaded alignment="stretch">
     <Spreaded direction="vertical">
         <PowerTrianglePanel />
-        <TargettingPanel grow />
+        <TargettingPanel />
     </Spreaded>
-
+    <Spreaded direction="vertical">
+        <ShieldsPanel grow />
+        <CounterMeasuresPanel />
+    </Spreaded>
     <Spreaded direction="vertical">
         <MissilesPanel />
         <TurretPanel grow />
-    </Spreaded>
-
-    <Spreaded direction="vertical">
-        <ShieldsPanel />
-        <CounterMeasuresPanel />
     </Spreaded>
 </Spreaded>

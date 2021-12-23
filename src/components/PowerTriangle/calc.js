@@ -86,7 +86,7 @@ export const coordinatesToRepartition = ({ width, height }, coordinates) => {
 };
 
 export const triangleCoordinates = ({ width: frameWidth, height: frameHeight }, size) => {
-    const margin = 10;
+    const margin = 5;
     const drawWidth = frameWidth - margin * 2;
     const drawHeight = frameHeight - margin * 2;
     const width = (drawWidth * size) / 100;

@@ -1,4 +1,5 @@
 <script>
+    import { createEventDispatcher } from "svelte";
     import Icon from "svelte-fa";
     import { vjoyPress } from "../actions";
     import { debug, theme } from "../stores";
@@ -11,11 +12,13 @@
     $: activeBgColor = `${color}66`;
     export let number;
 
-    export let x = .5;
-    export let y = .3;
+    const dispatch = createEventDispatcher();
+
+    export let x = 0.5;
+    export let y = 0.3;
     let c = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-    let rad = Math.asin(y/c);
-    let deg = rad * (180/Math.PI);
+    let rad = Math.asin(y / c);
+    let deg = rad * (180 / Math.PI);
 </script>
 
 <button
@@ -27,6 +30,7 @@
         --y: {y}rem;
         --rotate: -{deg}deg;
     "
+    on:click={() => dispatch('click')}
     use:vjoyPress={{ number }}
 >
     {#if icon}

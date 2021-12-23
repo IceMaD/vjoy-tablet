@@ -7,15 +7,15 @@
     $: render = ({ context, width, height }) => {
         const frameTriangle = triangleCoordinates({ width, height }, 100);
         const color = $theme.grey;
-        const lineWidth = 1;
-        const radius = 2;
+        const lineWidth = (width * 0.5) / 100;
+        const radius = lineWidth * 2;
 
         drawTrangleAxis(context, frameTriangle, { lineWidth, color });
         drawTriangle(context, frameTriangle, { lineWidth, color });
 
-        drawDot(context, frameTriangle.a, { radius: 3, color });
-        drawDot(context, frameTriangle.b, { radius: 3, color });
-        drawDot(context, frameTriangle.c, { radius: 3, color });
+        drawDot(context, frameTriangle.a, { radius, color });
+        drawDot(context, frameTriangle.b, { radius, color });
+        drawDot(context, frameTriangle.c, { radius, color });
 
         [80, 60, 40].forEach((percentage) => {
             const rest = (100 - percentage) / 2;

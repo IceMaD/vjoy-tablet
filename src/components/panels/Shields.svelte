@@ -5,7 +5,7 @@
     export let grow = false;
 </script>
 
-<Panel label="Shields" direction="vertical" {grow}>
+<Panel label="Shields focus" direction="vertical" {grow}>
     <ShieldsFocus />
     <Button
         label="Reset"

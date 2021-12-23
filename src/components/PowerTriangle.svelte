@@ -1,6 +1,5 @@
 <script>
-    import { tweened, spring } from "svelte/motion";
-	import { quadOut as easing } from 'svelte/easing';
+    import { spring } from "svelte/motion";
 
     import { Canvas } from "svelte-canvas";
     import Grid from "./PowerTriangle/Grid.svelte";
@@ -13,38 +12,42 @@
         triangleCoordinates,
     } from "./PowerTriangle/calc";
 
-    const width = 300;
-    const height = widthToHeight(width);
-    let repartition = tweened([60, 20, 20], {
-		duration: 200,
-		easing
-	});
+    import { powerRepartiton, animatedPowerRepartiton } from "../stores";
+
+    let screenWidth;
+    $: width = screenWidth * 0.18;
+    $: height = widthToHeight(width);
     let preview = spring(null, {
-		stiffness: 0.1,
-		damping: 0.4
-	});
+        stiffness: 0.1,
+        damping: 0.4,
+    });
     let cursor = "default";
 
-    console.log(preview);
+    const updatePreview = coordinates => {
+        cursor = "pointer";
+        preview.set(
+            coordinatesToRepartition({ width, height }, coordinates)
+        );
+    };
+
+    const clearPreview = () => {
+        preview.set(null, { hard: true });
+        cursor = "default";
+    };
 
     const onMouseMove = ({ clientX, clientY, target: canvas }) => {
         let { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
-        let stateCoordinates = [clientX - canvasX, clientY - canvasY];
+        let previewCoordinates = [clientX - canvasX, clientY - canvasY];
 
         if (
             pointInTriangle(
-                stateCoordinates,
+                previewCoordinates,
                 triangleCoordinates({ width, height }, 110)
             )
         ) {
-            cursor = "pointer";
-            preview.set(coordinatesToRepartition(
-                { width, height },
-                stateCoordinates
-            ));
+            updatePreview(previewCoordinates)
         } else {
-            preview.set(null, {hard: true});
-            cursor = "default";
+            clearPreview();
         }
     };
 
@@ -58,13 +61,14 @@
                 triangleCoordinates({ width, height }, 110)
             )
         ) {
-            repartition.set(coordinatesToRepartition(
-                { width, height },
-                stateCoordinates
-            ));
+            powerRepartiton.set(
+                coordinatesToRepartition({ width, height }, stateCoordinates)
+            );
         }
     };
 </script>
+
+<svelte:window bind:innerWidth={screenWidth} />
 
 <div class="container">
     <div class="label shields">Shields</div>
@@ -74,41 +78,42 @@
         {height}
         on:click={onClick}
         on:mousemove={onMouseMove}
-        on:mouseleave={onMouseMove}
+        on:mouseleave={clearPreview}
         style="cursor: {cursor}"
     >
         <Grid />
         <Preview repartition={$preview} />
-        <State repartition={$repartition} />
+        <State repartition={$animatedPowerRepartiton} />
     </Canvas>
-    <div class="label engine">
-        {preview ? JSON.stringify(preview) : "Engine"}
-    </div>
+    <div class="label engine">Engine</div>
 </div>
 
 <style>
     .container {
         position: relative;
         padding: 2rem;
+        align-self: center;
+        justify-self: center;
     }
 
     .label {
         position: absolute;
         text-transform: uppercase;
+        line-height: 1rem;
     }
 
     .shields {
-        top: 0;
-        left: 0;
+        top: 0.5rem;
+        left: 0.5rem;
     }
 
     .weapons {
-        top: 0;
-        right: 0;
+        top: 0.5rem;
+        right: 0.5rem;
     }
 
     .engine {
-        bottom: 0;
+        bottom: 0.5rem;
         transform: translateX(-50%);
         left: 50%;
     }
