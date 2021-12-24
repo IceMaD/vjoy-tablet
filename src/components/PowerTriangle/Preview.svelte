@@ -2,7 +2,7 @@
     import { Layer } from "svelte-canvas";
     import { drawTrangleAxis } from "./draw";
     import { theme } from "../../stores";
-    import { triangleCoordinates, repartitionToCoordinates } from "./calc";
+    import { triangle, repartitionToPoint } from "./calc";
 
     export let repartition;
 
@@ -13,8 +13,8 @@
             drawTrangleAxis(
                 context,
                 {
-                    ...triangleCoordinates({ width, height }, 100),
-                    center: repartitionToCoordinates(
+                    ...triangle({ width, height }, 100),
+                    center: repartitionToPoint(
                         { width, height },
                         repartition
                     ),

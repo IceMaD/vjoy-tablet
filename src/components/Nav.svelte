@@ -68,11 +68,7 @@
 		<li class="spacer" />
 		<li>
 			<button
-				on:click={() => {
-					let response = toggleFullScreen();
-
-					console.log(response);
-				}}
+				on:click={toggleFullScreen}
 			>
 				<Icon
 					class="icon"

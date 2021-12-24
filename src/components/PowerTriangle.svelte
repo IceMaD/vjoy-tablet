@@ -7,12 +7,19 @@
     import Preview from "./PowerTriangle/Preview.svelte";
     import {
         widthToHeight,
-        coordinatesToRepartition,
+        pointToRepartition,
         pointInTriangle,
-        triangleCoordinates,
+        triangle,
+        allowedMatrix,
     } from "./PowerTriangle/calc";
 
-    import { powerRepartiton, animatedPowerRepartiton } from "../stores";
+    import {
+        powerRepartiton,
+        animatedPowerRepartiton,
+        gridPositions,
+        mapping,
+    } from "../stores";
+    import VjoyClient from "../utils/VjoyClient";
 
     let screenWidth;
     $: width = screenWidth * 0.18;
@@ -23,10 +30,30 @@
     });
     let cursor = "default";
 
-    const updatePreview = coordinates => {
+    const getClosestGridPosition = ([x, y]) => {
+        return $gridPositions.reduce((closestPosition, gridPosition) => {
+            if (!closestPosition) {
+                return gridPosition;
+            }
+
+            const [closestX, closestY] = closestPosition.point;
+            const [gridX, gridY] = gridPosition.point;
+
+            const closestDiff = Math.abs(x - closestX) + Math.abs(y - closestY);
+            const currentDiff = Math.abs(x - gridX) + Math.abs(y - gridY);
+
+            return currentDiff < closestDiff ? gridPosition : closestPosition;
+        }, null);
+    };
+
+    const updatePreview = (point) => {
         cursor = "pointer";
+
         preview.set(
-            coordinatesToRepartition({ width, height }, coordinates)
+            pointToRepartition(
+                { width, height },
+                getClosestGridPosition(point).point
+            )
         );
     };
 
@@ -36,33 +63,39 @@
     };
 
     const onMouseMove = ({ clientX, clientY, target: canvas }) => {
-        let { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
-        let previewCoordinates = [clientX - canvasX, clientY - canvasY];
+        const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
+        const previewPoint = [clientX - canvasX, clientY - canvasY];
 
-        if (
-            pointInTriangle(
-                previewCoordinates,
-                triangleCoordinates({ width, height }, 110)
-            )
-        ) {
-            updatePreview(previewCoordinates)
+        if (pointInTriangle(previewPoint, triangle({ width, height }, 110))) {
+            updatePreview(previewPoint);
         } else {
             clearPreview();
         }
     };
 
-    const onClick = ({ clientX, clientY, target: canvas }) => {
-        let { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
-        let stateCoordinates = [clientX - canvasX, clientY - canvasY];
+    const inputMapping = {
+        weapons: $mapping.power.triangle.weapons.increase,
+        shields: $mapping.power.triangle.shields.increase,
+        thrusters: $mapping.power.triangle.thrusters.increase,
+    };
 
-        if (
-            pointInTriangle(
-                stateCoordinates,
-                triangleCoordinates({ width, height }, 110)
-            )
-        ) {
+    const onClick = ({ clientX, clientY, target: canvas }) => {
+        const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
+        const point = [clientX - canvasX, clientY - canvasY];
+
+        if (pointInTriangle(point, triangle({ width, height }, 110))) {
+            const closestPosition = getClosestGridPosition(point);
+
+            closestPosition.inputs
+                .map((input) => inputMapping[input])
+                .reduce(
+                    (previousPromise, input) =>
+                        previousPromise.then(() => VjoyClient.press(input)),
+                    VjoyClient.press($mapping.power.triangle.reset)
+                );
+
             powerRepartiton.set(
-                coordinatesToRepartition({ width, height }, stateCoordinates)
+                pointToRepartition({ width, height }, closestPosition.point)
             );
         }
     };
@@ -71,8 +104,9 @@
 <svelte:window bind:innerWidth={screenWidth} />
 
 <div class="container">
-    <div class="label shields">Shields</div>
     <div class="label weapons">Weapons</div>
+    <div class="label shields">Shields</div>
+    <div class="label thrusters">Thrusters</div>
     <Canvas
         {width}
         {height}
@@ -85,7 +119,6 @@
         <Preview repartition={$preview} />
         <State repartition={$animatedPowerRepartiton} />
     </Canvas>
-    <div class="label engine">Engine</div>
 </div>
 
 <style>
@@ -104,15 +137,15 @@
 
     .shields {
         top: 0.5rem;
-        left: 0.5rem;
+        right: 0.5rem;
     }
 
     .weapons {
         top: 0.5rem;
-        right: 0.5rem;
+        left: 0.5rem;
     }
 
-    .engine {
+    .thrusters {
         bottom: 0.5rem;
         transform: translateX(-50%);
         left: 50%;

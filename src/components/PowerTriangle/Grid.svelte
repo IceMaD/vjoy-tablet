@@ -1,65 +1,57 @@
 <script>
     import { Layer } from "svelte-canvas";
     import { drawTrangleAxis, drawTriangle, drawDot } from "./draw";
-    import { triangleCoordinates, repartitionToCoordinates } from "./calc";
-    import { theme } from "../../stores";
+    import {
+        triangle,
+        repartitionToPoint,
+        increment,
+        third,
+        allowedMatrix,
+    } from "./calc";
+    import { gridPositions, theme } from "../../stores";
 
     $: render = ({ context, width, height }) => {
-        const frameTriangle = triangleCoordinates({ width, height }, 100);
+        const frameTriangle = triangle({ width, height }, 100);
         const color = $theme.grey;
         const lineWidth = (width * 0.5) / 100;
         const radius = lineWidth * 2;
 
         drawTrangleAxis(context, frameTriangle, { lineWidth, color });
-        drawTriangle(context, frameTriangle, { lineWidth, color });
 
-        drawDot(context, frameTriangle.a, { radius, color });
-        drawDot(context, frameTriangle.b, { radius, color });
-        drawDot(context, frameTriangle.c, { radius, color });
-
-        [80, 60, 40].forEach((percentage) => {
+        [1, 2, 3, 4].forEach((multiplier) => {
+            const percentage = third + multiplier * increment;
             const rest = (100 - percentage) / 2;
 
-            let coordinates = {
-                a: repartitionToCoordinates({ width, height }, [
+            let point = {
+                a: repartitionToPoint({ width, height }, [
                     percentage,
                     rest,
                     rest,
                 ]),
-                b: repartitionToCoordinates({ width, height }, [
+                b: repartitionToPoint({ width, height }, [
                     rest,
                     percentage,
                     rest,
                 ]),
-                c: repartitionToCoordinates({ width, height }, [
+                c: repartitionToPoint({ width, height }, [
                     rest,
                     rest,
                     percentage,
                 ]),
             };
 
-            drawTriangle(context, coordinates, {
+            drawTriangle(context, point, {
                 lineWidth: 1,
                 color: $theme.grey,
             });
         });
 
-        let tens = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        const positions = allowedMatrix({ width, height });
 
-        tens.forEach((aTen) => {
-            tens.forEach((bTen) => {
-                tens.forEach((cTen) => {
-                    if (100 !== aTen + bTen + cTen) {
-                        return;
-                    }
+        gridPositions.set(positions);
 
-                    const coordinates = repartitionToCoordinates(
-                        { width, height },
-                        [aTen, bTen, cTen]
-                    );
-                    drawDot(context, coordinates, { radius, color });
-                });
-            });
+        positions.forEach(({point}) => {
+            drawDot(context, point, { radius, color });
         });
     };
 </script>

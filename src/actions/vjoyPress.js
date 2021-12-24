@@ -1,6 +1,6 @@
 import VjoyClient from "../utils/VjoyClient";
 
-export function vjoyPress(node, { number, duration = 0}) {
+export function vjoyPress(node, { number, duration = 0 }) {
     let timer, durationMillisecond = duration * 1000;
 
     const start = () => {
@@ -16,9 +16,7 @@ export function vjoyPress(node, { number, duration = 0}) {
     node.oncontextmenu = () => false
 
     node.addEventListener('pointerdown', start);
-    // node.addEventListener('touchstart', start);
     node.addEventListener('pointerup', stop);
-    // node.addEventListener('touchend', stop);
 
     return {
         update(newNumber, newDuration) {
@@ -27,9 +25,7 @@ export function vjoyPress(node, { number, duration = 0}) {
         },
         destroy() {
             node.removeEventListener('pointerdown', start);
-            // node.removeEventListener('touchstart', start);
             node.removeEventListener('pointerup', stop);
-            // node.removeEventListener('touchend', stop);
         }
     };
 }

@@ -1,10 +1,10 @@
-export const repartitionToCoordinates = ({ width, height }, repartition) => {
+export const repartitionToPoint = ({ width, height }, repartition) => {
     let [shields, power, thrusters] = repartition.map((r) => r / 100);
     let {
         a: [ax, ay],
         b: [bx, by],
         c: [cx, cy],
-    } = triangleCoordinates({ width, height }, 100);
+    } = triangle({ width, height }, 100);
 
     return [
         ax * shields + bx * power + cx * thrusters,
@@ -39,53 +39,23 @@ export const lengthToLine = ([px, py], [[ax, ay], [bx, by]]) => {
     return dist;
 };
 
-const approximate = (value, apporimation = 5) => Math.ceil(Math.round(value / apporimation)) * apporimation;
-
-export const coordinatesToRepartition = ({ width, height }, coordinates) => {
-    let { a, b, c } = triangleCoordinates({ width, height }, 100);
+export const pointToRepartition = ({ width, height }, point) => {
+    let { a, b, c } = triangle({ width, height }, 100);
 
     let frameHeight = c[1] - a[1];
 
-    let aLength = lengthToLine(coordinates, [b, c]);
-    let bLength = lengthToLine(coordinates, [a, c]);
-    let cLength = lengthToLine(coordinates, [a, b]);
+    let aLength = lengthToLine(point, [b, c]);
+    let bLength = lengthToLine(point, [a, c]);
+    let cLength = lengthToLine(point, [a, b]);
 
     let shields = (aLength / frameHeight) * 100;
     let weapons = (bLength / frameHeight) * 100;
     let thrusters = (cLength / frameHeight) * 100;
 
-    switch (Math.max(shields, weapons, thrusters)) {
-        case shields:
-            shields = approximate(shields, 10);
-            weapons = approximate(weapons, 10);
-            thrusters = 100 - shields - weapons;
-        case weapons:
-            weapons = approximate(weapons, 10);
-            thrusters = approximate(thrusters, 10);
-            shields = 100 - weapons - thrusters;
-        case thrusters:
-            thrusters = approximate(thrusters, 10);
-            shields = approximate(shields, 10);
-            weapons = 100 - thrusters - shields;
-    }
-
     return [shields, weapons, thrusters];
-
-    const repartition = {
-    };
-
-    let max = Object
-        .keys(repartition)
-        .reduce((best, current) => repartition[current] > repartition[best] ? current : best, 'shields')
-
-    repartition[max] = approximate(repartition[max], 20);
-
-    console.log(max, repartition);
-
-    return [repartition.shields, repartition.weapons, repartition.thrusters];
 };
 
-export const triangleCoordinates = ({ width: frameWidth, height: frameHeight }, size) => {
+export const triangle = ({ width: frameWidth, height: frameHeight }, size) => {
     const margin = 5;
     const drawWidth = frameWidth - margin * 2;
     const drawHeight = frameHeight - margin * 2;
@@ -122,4 +92,78 @@ export const pointInTriangle = (
     const v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 
     return u >= 0 && v >= 0 && u + v < 1;
+};
+
+export const third = 100 / 3;
+export const increment = (100 - third) / 4;
+
+const pullFrom = (a, b) => {
+    let toPull = increment;
+    let toPullA = toPull / 2;
+    let toPullB = toPull / 2;
+
+    if (a + b < toPull) {
+        return [0, 0, a + b];
+    }
+
+    if (a < toPullA) {
+        return [0, b - toPullB - (toPullA - a), toPull];
+    }
+
+    if (b < toPullB) {
+        return [a - toPullA - (toPullB - b), 0, toPull];
+    }
+
+    return [a - toPullA, b - toPullB, toPull]
+}
+
+export const applyInput = (repartition, input) => {
+    const [weapons, shields, thrusters] = repartition;
+    let weaponsAfter, shieldsAfter, thrustersAfter, pulled;
+
+    switch (input) {
+        case 'weapons':
+            [shieldsAfter, thrustersAfter, pulled] = pullFrom(shields, thrusters);
+
+            return [weapons + pulled, shieldsAfter, thrustersAfter];
+        case 'shields':
+            [thrustersAfter, weaponsAfter, pulled] = pullFrom(thrusters, weapons);
+
+            return [weaponsAfter, shields + pulled, thrustersAfter];
+        case 'thrusters':
+            [weaponsAfter, shieldsAfter, pulled] = pullFrom(weapons, shields);
+
+            return [weaponsAfter, shieldsAfter, thrusters + pulled];
+    }
+}
+
+function combinations(a, b) {
+    return [
+        [a],
+        [a, a],
+        [a, b],
+        [a, a, a],
+        [a, b, a],
+        [a, b, b],
+        [a, a, a, a],
+        [a, a, a, b],
+        [a, a, b, b],
+        [a, b, b, b],
+    ]
+}
+
+export const allowedMatrix = ({ width, height }) => {
+    return [
+        [],
+        ...combinations('weapons', 'shields'),
+        ...combinations('shields', 'thrusters'),
+        ...combinations('thrusters', 'weapons'),
+    ].map(inputs => {
+        const finalRepartition = inputs.reduce((repartition, input) => applyInput(repartition, input), [third, third, third]);
+
+        return {
+            inputs,
+            point: repartitionToPoint({ width, height }, finalRepartition),
+        }
+    })
 };
